@@ -1,6 +1,8 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using MouseBuddy;
+using BasicPrimitiveBuddy;
 
 namespace MouseBuddyExample.Windows
 {
@@ -9,14 +11,29 @@ namespace MouseBuddyExample.Windows
 	/// </summary>
 	public class Game1 : Game
 	{
+		#region Properties
+
 		GraphicsDeviceManager graphics;
 		SpriteBatch spriteBatch;
+		
+		MouseManager Mouse
+		{
+			get; set;
+		}
+
+		XnaBasicPrimitive Prim
+		{
+			get; set;
+		}
+
+		#endregion //Properties
+
 
 		public Game1()
 		{
 			graphics = new GraphicsDeviceManager(this);
 			Content.RootDirectory = "Content";
-		}
+        }
 
 		/// <summary>
 		/// Allows the game to perform any initialization it needs to before starting to run.
@@ -27,6 +44,10 @@ namespace MouseBuddyExample.Windows
 		protected override void Initialize()
 		{
 			// TODO: Add your initialization logic here
+
+			Mouse = new MouseManager(this);
+
+			Prim = new XnaBasicPrimitive(GraphicsDevice, new SpriteBatch(GraphicsDevice));
 
 			base.Initialize();
 		}
