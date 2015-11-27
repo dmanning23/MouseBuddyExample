@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using MouseBuddy;
 using BasicPrimitiveBuddy;
+using System.Collections.Generic;
 
 namespace MouseBuddyExample.Windows
 {
@@ -15,7 +16,7 @@ namespace MouseBuddyExample.Windows
 
 		GraphicsDeviceManager graphics;
 		SpriteBatch spriteBatch;
-		
+
 		MouseManager Mouse
 		{
 			get; set;
@@ -26,14 +27,35 @@ namespace MouseBuddyExample.Windows
 			get; set;
 		}
 
+		List<ButtonDownEventArgs> ButtonPresses
+		{
+			get; set;
+		}
+
+		List<ClickEventArgs> Clicks
+		{
+			get; set;
+		}
+
+		DragEventArgs Drag
+		{
+			get; set;
+		}
+
+		List<DropEventArgs> Drops { get; set; }
+
 		#endregion //Properties
 
+		#region Methods
 
 		public Game1()
 		{
 			graphics = new GraphicsDeviceManager(this);
 			Content.RootDirectory = "Content";
-        }
+			ButtonPresses = new List<ButtonDownEventArgs>();
+			Clicks = new List<ClickEventArgs>();
+			Drops = new List<DropEventArgs>();
+		}
 
 		/// <summary>
 		/// Allows the game to perform any initialization it needs to before starting to run.
@@ -43,11 +65,7 @@ namespace MouseBuddyExample.Windows
 		/// </summary>
 		protected override void Initialize()
 		{
-			// TODO: Add your initialization logic here
-
 			Mouse = new MouseManager(this);
-
-			Prim = new XnaBasicPrimitive(GraphicsDevice, new SpriteBatch(GraphicsDevice));
 
 			base.Initialize();
 		}
@@ -60,8 +78,7 @@ namespace MouseBuddyExample.Windows
 		{
 			// Create a new SpriteBatch, which can be used to draw textures.
 			spriteBatch = new SpriteBatch(GraphicsDevice);
-
-			// TODO: use this.Content to load your game content here
+			Prim = new XnaBasicPrimitive(GraphicsDevice, spriteBatch);
 		}
 
 		/// <summary>
@@ -83,7 +100,53 @@ namespace MouseBuddyExample.Windows
 			if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
 				Exit();
 
-			// TODO: Add your update logic here
+			Drag = null;
+
+			foreach (var mouseEvent in Mouse.MouseEvents)
+			{
+				var button = mouseEvent as ButtonDownEventArgs;
+				if (null != button)
+				{
+					ButtonPresses.Add(button);
+					continue;
+				}
+
+				var click = mouseEvent as ClickEventArgs;
+				if (null != click)
+				{
+					Clicks.Add(click);
+					continue;
+				}
+
+				var drag = mouseEvent as DragEventArgs;
+				if (null != drag)
+				{
+					Drag = drag;
+					continue;
+				}
+
+				var drop = mouseEvent as DropEventArgs;
+				if (null != drop)
+				{
+					Drops.Add(drop);
+					continue;
+				}
+			}
+
+			while (ButtonPresses.Count > 5)
+			{
+				ButtonPresses.RemoveAt(0);
+            }
+
+			while (Clicks.Count > 5)
+			{
+				Clicks.RemoveAt(0);
+			}
+
+			while (Drops.Count > 5)
+			{
+				Drops.RemoveAt(0);
+			}
 
 			base.Update(gameTime);
 		}
@@ -96,9 +159,40 @@ namespace MouseBuddyExample.Windows
 		{
 			GraphicsDevice.Clear(Color.CornflowerBlue);
 
-			// TODO: Add your drawing code here
+			spriteBatch.Begin();
+
+			//darw the mouse cursor
+			Prim.Thickness = 1;
+			Prim.Circle(Mouse.MousePos, 5, Color.White);
+
+			//draw the button down events
+			Prim.Thickness = 2;
+
+			foreach (var mouseEvent in ButtonPresses)
+			{
+				Prim.Circle(mouseEvent.Position, 10, Color.Yellow);
+			}
+
+			if (null != Drag)
+			{
+				Prim.Line(Drag.Start, Drag.Current, Color.DarkBlue);
+			}
+
+			foreach (var mouseEvent in Clicks)
+			{
+				Prim.Circle(mouseEvent.Position, 10, Color.Red);
+			}
+
+			foreach (var mouseEvent in Drops)
+			{
+				Prim.Circle(mouseEvent.Drop, 10, Color.Green);
+			}
+
+			spriteBatch.End();
 
 			base.Draw(gameTime);
 		}
+
+		#endregion //Methods
 	}
 }
