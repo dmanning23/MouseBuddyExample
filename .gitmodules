@@ -1,0 +1,3 @@
+[submodule "externals/MouseBuddy"]
+	path = externals/MouseBuddy
+	url = git@github.com:dmanning23/MouseBuddy.git
