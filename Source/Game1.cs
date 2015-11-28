@@ -17,7 +17,7 @@ namespace MouseBuddyExample.Windows
 		GraphicsDeviceManager graphics;
 		SpriteBatch spriteBatch;
 
-		MouseManager Mouse
+		MouseComponent Mouse
 		{
 			get; set;
 		}
@@ -65,7 +65,7 @@ namespace MouseBuddyExample.Windows
 		/// </summary>
 		protected override void Initialize()
 		{
-			Mouse = new MouseManager(this);
+			Mouse = new MouseComponent(this);
 
 			base.Initialize();
 		}
@@ -175,7 +175,8 @@ namespace MouseBuddyExample.Windows
 
 			if (null != Drag)
 			{
-				Prim.Line(Drag.Start, Drag.Current, Color.DarkBlue);
+				Prim.Circle(Drag.Current, 10, Color.LimeGreen);
+				Prim.Line(Drag.Start, Drag.Current, Color.LimeGreen);
 			}
 
 			foreach (var mouseEvent in Clicks)
@@ -185,6 +186,7 @@ namespace MouseBuddyExample.Windows
 
 			foreach (var mouseEvent in Drops)
 			{
+				Prim.Line(mouseEvent.Start, mouseEvent.Drop, Color.Green);
 				Prim.Circle(mouseEvent.Drop, 10, Color.Green);
 			}
 
