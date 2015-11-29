@@ -170,7 +170,7 @@ namespace MouseBuddyExample.Windows
 
 			foreach (var mouseEvent in ButtonPresses)
 			{
-				Prim.Circle(mouseEvent.Position, 10, Color.Yellow);
+				Prim.Circle(mouseEvent.Position, 10, (mouseEvent.Button == MouseButton.Left) ? Color.Yellow : Color.Orange);
 			}
 
 			if (null != Drag)
@@ -181,7 +181,7 @@ namespace MouseBuddyExample.Windows
 
 			foreach (var mouseEvent in Clicks)
 			{
-				Prim.Circle(mouseEvent.Position, 10, Color.Red);
+				Prim.Circle(mouseEvent.Position, 10, (mouseEvent.Button == MouseButton.Left) ? Color.Red : Color.DarkRed);
 			}
 
 			foreach (var mouseEvent in Drops)
