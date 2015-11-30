@@ -203,7 +203,6 @@ namespace MouseBuddyExample.Windows
 
 			foreach (var mouseEvent in Drops)
 			{
-				//Prim.Line(mouseEvent.Drop, mouseEvent.Drop - mouseEvent.Delta, Color.LimeGreen);
 				Prim.Line(mouseEvent.Start, mouseEvent.Drop, Color.Green);
 				Prim.Circle(mouseEvent.Drop, 10, Color.Green);
 			}
