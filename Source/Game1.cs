@@ -42,6 +42,11 @@ namespace MouseBuddyExample.Windows
 			get; set;
 		}
 
+		List<DragEventArgs> Drags
+		{
+			get; set;
+		}
+
 		List<DropEventArgs> Drops { get; set; }
 
 		#endregion //Properties
@@ -55,6 +60,7 @@ namespace MouseBuddyExample.Windows
 			ButtonPresses = new List<ButtonDownEventArgs>();
 			Clicks = new List<ClickEventArgs>();
 			Drops = new List<DropEventArgs>();
+			Drags = new List<DragEventArgs>();
 		}
 
 		/// <summary>
@@ -121,6 +127,7 @@ namespace MouseBuddyExample.Windows
 				var drag = mouseEvent as DragEventArgs;
 				if (null != drag)
 				{
+					Drags.Add(drag);
 					Drag = drag;
 					continue;
 				}
@@ -148,6 +155,11 @@ namespace MouseBuddyExample.Windows
 				Drops.RemoveAt(0);
 			}
 
+			while (Drags.Count > 30)
+			{
+				Drags.RemoveAt(0);
+			}
+
 			base.Update(gameTime);
 		}
 
@@ -173,6 +185,11 @@ namespace MouseBuddyExample.Windows
 				Prim.Circle(mouseEvent.Position, 10, (mouseEvent.Button == MouseButton.Left) ? Color.Yellow : Color.Orange);
 			}
 
+			foreach (var mouseEvent in Drags)
+			{
+				Prim.Line(mouseEvent.Current, mouseEvent.Current - mouseEvent.Delta, Color.LimeGreen);
+			}
+
 			if (null != Drag)
 			{
 				Prim.Circle(Drag.Current, 10, Color.LimeGreen);
@@ -186,6 +203,7 @@ namespace MouseBuddyExample.Windows
 
 			foreach (var mouseEvent in Drops)
 			{
+				//Prim.Line(mouseEvent.Drop, mouseEvent.Drop - mouseEvent.Delta, Color.LimeGreen);
 				Prim.Line(mouseEvent.Start, mouseEvent.Drop, Color.Green);
 				Prim.Circle(mouseEvent.Drop, 10, Color.Green);
 			}
