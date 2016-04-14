@@ -2,10 +2,10 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using MouseBuddy;
-using BasicPrimitiveBuddy;
+using PrimitiveBuddy;
 using System.Collections.Generic;
 
-namespace MouseBuddyExample.Windows
+namespace MouseBuddyExample
 {
 	/// <summary>
 	/// This is the main type for your game.
@@ -22,7 +22,7 @@ namespace MouseBuddyExample.Windows
 			get; set;
 		}
 
-		XnaBasicPrimitive Prim
+		Primitive Prim
 		{
 			get; set;
 		}
@@ -84,7 +84,7 @@ namespace MouseBuddyExample.Windows
 		{
 			// Create a new SpriteBatch, which can be used to draw textures.
 			spriteBatch = new SpriteBatch(GraphicsDevice);
-			Prim = new XnaBasicPrimitive(GraphicsDevice, spriteBatch);
+			Prim = new Primitive(GraphicsDevice, spriteBatch);
 		}
 
 		/// <summary>

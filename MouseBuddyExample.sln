@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25123.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MouseBuddyExample.DesktopGL", "MouseBuddyExample.DesktopGL\MouseBuddyExample.DesktopGL.csproj", "{11E14D31-CF25-4F7C-8062-7F6BC6EAD3AA}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "MouseBuddyExample.SharedProject", "MouseBuddyExample.SharedProject\MouseBuddyExample.SharedProject.shproj", "{B679C6AE-F510-4722-85F8-44A18C359ABC}"
+EndProject
+Global
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		MouseBuddyExample.SharedProject\MouseBuddyExample.SharedProject.projitems*{11e14d31-cf25-4f7c-8062-7f6bc6ead3aa}*SharedItemsImports = 4
+		MouseBuddyExample.SharedProject\MouseBuddyExample.SharedProject.projitems*{b679c6ae-f510-4722-85f8-44a18c359abc}*SharedItemsImports = 13
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{11E14D31-CF25-4F7C-8062-7F6BC6EAD3AA}.Debug|x86.ActiveCfg = Debug|x86
+		{11E14D31-CF25-4F7C-8062-7F6BC6EAD3AA}.Debug|x86.Build.0 = Debug|x86
+		{11E14D31-CF25-4F7C-8062-7F6BC6EAD3AA}.Release|x86.ActiveCfg = Release|x86
+		{11E14D31-CF25-4F7C-8062-7F6BC6EAD3AA}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
