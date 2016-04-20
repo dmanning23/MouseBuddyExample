@@ -4,6 +4,8 @@ using Microsoft.Xna.Framework.Input;
 using MouseBuddy;
 using PrimitiveBuddy;
 using System.Collections.Generic;
+using InputHelper;
+using System.Linq;
 
 namespace MouseBuddyExample
 {
@@ -17,7 +19,7 @@ namespace MouseBuddyExample
 		GraphicsDeviceManager graphics;
 		SpriteBatch spriteBatch;
 
-		MouseComponent Mouse
+		IInputHelper input
 		{
 			get; set;
 		}
@@ -27,7 +29,7 @@ namespace MouseBuddyExample
 			get; set;
 		}
 
-		List<ButtonDownEventArgs> ButtonPresses
+		List<HighlightEventArgs> ButtonPresses
 		{
 			get; set;
 		}
@@ -57,7 +59,7 @@ namespace MouseBuddyExample
 		{
 			graphics = new GraphicsDeviceManager(this);
 			Content.RootDirectory = "Content";
-			ButtonPresses = new List<ButtonDownEventArgs>();
+			ButtonPresses = new List<HighlightEventArgs>();
 			Clicks = new List<ClickEventArgs>();
 			Drops = new List<DropEventArgs>();
 			Drags = new List<DragEventArgs>();
@@ -71,7 +73,7 @@ namespace MouseBuddyExample
 		/// </summary>
 		protected override void Initialize()
 		{
-			Mouse = new MouseComponent(this);
+			input = new MouseComponent(this);
 
 			base.Initialize();
 		}
@@ -108,37 +110,11 @@ namespace MouseBuddyExample
 
 			Drag = null;
 
-			foreach (var mouseEvent in Mouse.MouseEvents)
-			{
-				var button = mouseEvent as ButtonDownEventArgs;
-				if (null != button)
-				{
-					ButtonPresses.Add(button);
-					continue;
-				}
-
-				var click = mouseEvent as ClickEventArgs;
-				if (null != click)
-				{
-					Clicks.Add(click);
-					continue;
-				}
-
-				var drag = mouseEvent as DragEventArgs;
-				if (null != drag)
-				{
-					Drags.Add(drag);
-					Drag = drag;
-					continue;
-				}
-
-				var drop = mouseEvent as DropEventArgs;
-				if (null != drop)
-				{
-					Drops.Add(drop);
-					continue;
-				}
-			}
+			ButtonPresses.AddRange(input.Highlights);
+			Clicks.AddRange(input.Clicks);
+			Drags.AddRange(input.Drags);
+			Drag = input.Drags.FirstOrDefault();
+			Drops.AddRange(input.Drops);
 
 			while (ButtonPresses.Count > 5)
 			{
@@ -175,14 +151,14 @@ namespace MouseBuddyExample
 
 			//darw the mouse cursor
 			Prim.Thickness = 1;
-			Prim.Circle(Mouse.MousePos, 5, Color.White);
+			//Prim.Circle(Mouse.MousePos, 5, Color.White);
 
 			//draw the button down events
 			Prim.Thickness = 2;
 
 			foreach (var mouseEvent in ButtonPresses)
 			{
-				Prim.Circle(mouseEvent.Position, 10, (mouseEvent.Button == MouseButton.Left) ? Color.Yellow : Color.Orange);
+				Prim.Circle(mouseEvent.Position, 10, Color.Yellow);
 			}
 
 			foreach (var mouseEvent in Drags)
