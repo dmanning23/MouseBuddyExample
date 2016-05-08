@@ -13,7 +13,7 @@
     <AssemblyName>MouseBuddyExample.DesktopGL</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <MonoGamePlatform>DesktopGL</MonoGamePlatform>
-    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
@@ -64,15 +64,7 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="FilenameBuddy.DesktopGL, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\FilenameBuddy.DesktopGL.1.0.1\lib\FilenameBuddy.DesktopGL.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="GameTimer.DesktopGL, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\GameTimer.DesktopGL.1.0.7\lib\GameTimer.DesktopGL.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="InputHelper.DesktopGL, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\InputHelper.DesktopGL.1.0.2\lib\InputHelper.DesktopGL.dll</HintPath>
+      <HintPath>..\packages\FilenameBuddy.1.0.2\lib\net452\FilenameBuddy.DesktopGL.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="MonoGame.Framework, Version=3.5.1.1679, Culture=neutral, processorArchitecture=MSIL">
@@ -80,7 +72,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="MouseBuddy.DesktopGL, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MouseBuddy.DesktopGL.1.0.3\lib\MouseBuddy.DesktopGL.dll</HintPath>
+      <HintPath>..\packages\MouseBuddy.1.0.4\lib\net451\MouseBuddy.DesktopGL.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="NVorbis, Version=0.8.4.0, Culture=neutral, processorArchitecture=MSIL">
@@ -92,11 +84,11 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="PrimitiveBuddy.DesktopGL, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\PrimitiveBuddy.DesktopGL.1.0.3\lib\PrimitiveBuddy.DesktopGL.dll</HintPath>
+      <HintPath>..\packages\PrimitiveBuddy.1.0.0\lib\net451\PrimitiveBuddy.DesktopGL.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="StateMachineBuddy.DesktopGL, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\StateMachineBuddy.DesktopGL.1.0.1\lib\StateMachineBuddy.DesktopGL.dll</HintPath>
+      <HintPath>..\packages\StateMachineBuddy.1.0.0\lib\net451\StateMachineBuddy.DesktopGL.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -111,6 +103,12 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\InputHelper\InputHelper\InputHelper.DesktopGL\InputHelper.DesktopGL.csproj">
+      <Project>{44a8366b-8c01-4df7-a6af-007a6fee6625}</Project>
+      <Name>InputHelper.DesktopGL</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="..\MouseBuddyExample.SharedProject\MouseBuddyExample.SharedProject.projitems" Label="Shared" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
