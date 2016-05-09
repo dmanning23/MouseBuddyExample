@@ -7,8 +7,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MouseBuddyExample.DesktopGL
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "MouseBuddyExample.SharedProject", "MouseBuddyExample.SharedProject\MouseBuddyExample.SharedProject.shproj", "{B679C6AE-F510-4722-85F8-44A18C359ABC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InputHelper.DesktopGL", "..\InputHelper\InputHelper\InputHelper.DesktopGL\InputHelper.DesktopGL.csproj", "{44A8366B-8C01-4DF7-A6AF-007A6FEE6625}"
-EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		MouseBuddyExample.SharedProject\MouseBuddyExample.SharedProject.projitems*{11e14d31-cf25-4f7c-8062-7f6bc6ead3aa}*SharedItemsImports = 4
@@ -28,14 +26,6 @@ Global
 		{11E14D31-CF25-4F7C-8062-7F6BC6EAD3AA}.Release|Any CPU.ActiveCfg = Release|x86
 		{11E14D31-CF25-4F7C-8062-7F6BC6EAD3AA}.Release|x86.ActiveCfg = Release|x86
 		{11E14D31-CF25-4F7C-8062-7F6BC6EAD3AA}.Release|x86.Build.0 = Release|x86
-		{44A8366B-8C01-4DF7-A6AF-007A6FEE6625}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{44A8366B-8C01-4DF7-A6AF-007A6FEE6625}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{44A8366B-8C01-4DF7-A6AF-007A6FEE6625}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{44A8366B-8C01-4DF7-A6AF-007A6FEE6625}.Debug|x86.Build.0 = Debug|Any CPU
-		{44A8366B-8C01-4DF7-A6AF-007A6FEE6625}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{44A8366B-8C01-4DF7-A6AF-007A6FEE6625}.Release|Any CPU.Build.0 = Release|Any CPU
-		{44A8366B-8C01-4DF7-A6AF-007A6FEE6625}.Release|x86.ActiveCfg = Release|Any CPU
-		{44A8366B-8C01-4DF7-A6AF-007A6FEE6625}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
