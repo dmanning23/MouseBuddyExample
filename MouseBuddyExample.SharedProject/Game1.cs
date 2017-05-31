@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using InputHelper;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using MouseBuddy;
@@ -32,11 +33,21 @@ namespace MouseBuddyExample
 		/// </summary>
 		protected override void Initialize()
 		{
-			var input = new MouseComponent(this);
+			var input = new MouseComponent(this, EchoCoord);
 
-			var debug = new DebugInputComponent(this);
+			var debug = new DebugInputComponent(this, Identity);
 
 			base.Initialize();
+		}
+
+		Vector2 EchoCoord(Vector2 pos)
+		{
+			return pos;
+		}
+
+		Matrix Identity()
+		{
+			return Matrix.Identity;
 		}
 
 		/// <summary>
